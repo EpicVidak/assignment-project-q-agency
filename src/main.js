@@ -3,7 +3,7 @@ import App from './App.vue'
 import router from './javascript/router/routes.js'
 import i18n from './javascript/i18n'
 import constants from './javascript/constants'
-import {initFilters} from './javascript/filters/globalFilters'
+import initFilters from './javascript/filters/globalFilters'
 
 import GLOBAL_MIXIN from './javascript/mixins/globalMixin.js'
 
