@@ -1,40 +1,30 @@
 <template>
-  <div class="author" @mousemove.capture.prevent="handleMouseOverName">
+  <div class="author" @mousemove.capture.prevent="extendShow">
     {{ $t("authoredBy") }} {{ author.name }}
     <transition name="fade-top"> 
       <div
         v-if="showMoreInfo"
         class="expendedInfo"
-        @mousemove.capture.prevent="handleMouseOverInfo"
+        @mousemove.capture.prevent="extendShow"
         @click.capture.stop
       >
         <div class="triangle"></div>
-        <div class="info">
-          <div class="info-title">{{ $t("email") }}</div>
-          <a class="info-content" :href="'mailto:'+author.email">{{ author.email }}</a>
-        </div>
+        <AuthorItem :title="$t('email')" :content="author.email" :href="'mailto:'+author.email"/>
+        <AuthorItem :title="$t('phone')" :content="author.phone" :href="'tel:'+author.phone" />
+        <AuthorItem :title="$t('website')" :content="author.website" :href="'https://'+author.website" tblank />
+        <AuthorItem :title="$t('address')" :content="author.address.city + ', ' + author.address.street" :href="'https://maps.google.com/?q='+author.address.city+','+author.address.street" tblank />
   
-        <div class="info">
-          <div class="info-title">{{ $t("phone") }}</div>
-          <a class="info-content" :href="'tel:'+author.phone">{{ author.phone }}</a>
-        </div>
-  
-        <div class="info">
-          <div class="info-title">{{ $t("website") }}</div>
-          <a class="info-content" :href="'https://'+author.website" target="_blank">{{ author.website }}</a>
-        </div>
-  
-        <div class="info">
-          <div class="info-title">{{ $t("address") }}</div>
-          <a class="info-content" target="_blank" :href="'https://maps.google.com/?q='+author.address.city+','+author.address.street"> {{ author.address.city }} {{ ", " }} {{ author.address.street }} </a>  
-        </div>
       </div>
     </transition>  
   </div>
 </template>
 
 <script>
+import AuthorItem from './AuthorItem.vue';
 export default {
+  components: {
+    AuthorItem
+  },
   props: ["author"],
   data() {
     return {
@@ -43,13 +33,10 @@ export default {
       showMoreInfo: false,
     };
   },
-  mounted() {
-    console.log(this.author);
-  },
   methods: {
     extendShow() {
+      // throttling logic to not spam timeouts
       if (this.lastMoveEvent && Date.now() - this.lastMoveEvent < 100) return;
-
       this.lastMoveEvent = Date.now();
 
       if (this.closeTimeout) {
@@ -59,14 +46,7 @@ export default {
       this.showMoreInfo = true;
       this.closeTimeout = setTimeout(() => {
         this.showMoreInfo = false;
-      }, 500);
-    },
-
-    handleMouseOverName() {
-      this.extendShow();
-    },
-    handleMouseOverInfo() {
-      this.extendShow();
+      }, 700);
     },
   },
 };
@@ -108,17 +88,6 @@ export default {
       border-width: 0 10px 15px 10px;
       border-color: transparent transparent #a9a9a9 transparent;
       border-style: solid;
-    }
-    .info {
-      margin: 20px 0;
-      .info-title {
-        font-weight: bold;
-        font-size: 0.8rem;
-      }
-      .info-content {
-        font-size: 0.7rem;
-      }
-
     }
   }
 }

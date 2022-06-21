@@ -34,5 +34,4 @@ To change language for next build:
  - Posts page: 2h
  - View Post page: 2h
  - Author shenanigans: 30min
-
 ```

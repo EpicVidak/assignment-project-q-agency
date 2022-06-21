@@ -34,9 +34,14 @@ export default {
       let posts = this.posts
         // filter posts by input data
         .filter((post) => {
-          return post.title
+          return (
+            post.author.name
             .toLowerCase()
-            .includes(this.searchData.toLowerCase());
+            .includes(this.searchData.toLowerCase()) || 
+            post.author.username
+            .toLowerCase()
+            .includes(this.searchData.toLowerCase())
+          )
         })
         // simulate pagination
         .slice(0, this.numberOfPosts);
@@ -54,9 +59,25 @@ export default {
   },
   methods: {
     async fetchPosts() {
+      let cache = {}
       let [res, err] = await this.callApi(api.getPosts);
       if (err) return;
-      this.posts = res.data;
+      for (const post of res.data) {
+        // cache authors by id so we don't have to fetch them again
+        if (cache[post.userId]) {
+          post.author = cache[post.userId]
+          this.posts.push(post)
+          continue
+        }
+        // fetch otherwise
+        let [resAuthor, e] = await this.callApi(api.getUser, [post.userId]);
+        if (e) return;
+        post.author = resAuthor.data
+        // add to cache for future use
+        cache[post.userId] = resAuthor.data
+        this.posts.push(post)
+      }
+      console.log(this.posts);
     },
     async showMore() {
       if (this.numberOfPosts < 100) this.numberOfPosts += 10;

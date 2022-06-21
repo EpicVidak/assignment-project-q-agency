@@ -4,7 +4,7 @@
       <img :src="getImageLink(post.id)" loading="lazy" alt="post-image" />
       <div class="title">
         {{ post.title | capitalize | punctuate }}
-        <Author v-if="author" :author="author"/>
+        <Author :author="post.author"/>
       </div>
     </div>
     <div class="bottom">
@@ -16,34 +16,15 @@
 </template>
 
 <script>
-import api from "@/javascript/api";
 import Author from "./Author.vue";
 export default {
   components: {
     Author
   },
-  data() {
-    return {
-      author: null,
-    };
-  },
   props: {
     post: {
       type: Object,
       required: true,
-    },
-  },
-  mounted() {
-    this.getUser();
-  },
-  methods: {
-    test() {
-      console.log("test");
-    },
-    async getUser() {
-      let [res, e] = await this.callApi(api.getUser, [this.post.userId]);
-      if (e) return;
-      this.author = res.data;
     },
   },
 };
