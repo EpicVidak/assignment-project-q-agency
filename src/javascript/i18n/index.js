@@ -11,7 +11,7 @@ function getMessagesFromJson () {
     const msg = require(`./${locale}.json`)
     messages[locale] = msg;
   }
-  console.log(messages);
+  // console.log(messages);
   return messages
 
 }

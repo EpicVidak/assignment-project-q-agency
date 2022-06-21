@@ -1,6 +1,6 @@
 <template>
   <div class="author" @mousemove.capture.prevent="extendShow">
-    {{ $t("authoredBy") }} {{ author.name }}
+    {{ $t("authoredBy") }}{{ author.name }}
     <transition name="fade-top"> 
       <div
         v-if="showMoreInfo"
@@ -46,7 +46,7 @@ export default {
       this.showMoreInfo = true;
       this.closeTimeout = setTimeout(() => {
         this.showMoreInfo = false;
-      }, 700);
+      }, 7000);
     },
   },
 };
