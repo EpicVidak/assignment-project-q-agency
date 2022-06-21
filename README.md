@@ -27,6 +27,12 @@ To change language for next build:
  1) in .env file change the value of I18N_LOCALE to one of the values in locales constant (src/javascript/i18n/index.js)
 ```
 
+### Jest tests
+```
+To run jest test suit type:
+pnpm jest
+```
+
 ### Time estimate
 ```
  - Project setup: 1h
@@ -35,4 +41,6 @@ To change language for next build:
  - View Post page: 2h
  - Author shenanigans: 30 min
  - Refator: ~30 min
+ - Setting up jest: 1h
+ - Writing tests: 30min
 ```
