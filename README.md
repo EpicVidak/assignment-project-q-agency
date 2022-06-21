@@ -33,5 +33,6 @@ To change language for next build:
  - Navbar and home page: 30 min
  - Posts page: 2h
  - View Post page: 2h
- - Author shenanigans: 30min
+ - Author shenanigans: 30 min
+ - Refator: ~30 min
 ```
