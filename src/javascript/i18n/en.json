@@ -1,0 +1,17 @@
+{
+  "name": "Jon Doe",
+  "searchPost": "Filter posts",
+  "homePage": "Home",
+  "postPage": "Posts",
+  "authoredBy": "Authored by: ",
+  "showMoreComments": "Show more comments",
+  "showMorePosts": "Show more posts",
+  "noPosts": "No posts to show",
+  "email": "Email",
+  "phone": "Phone",
+  "website": "Website",
+  "address": "Address",
+  "commentSection": "Comment section",
+  "postedBy": "Posted by: ",
+  "introText": "Welcome to my assignment project"
+}

@@ -15,10 +15,24 @@ pnpm run serve
 pnpm run build
 ```
 
-### Lints and fixes files
+### Language localization
 ```
-pnpm run lint
+To create new language:
+ - src/javascript/i18n/
+ 1) create json file and populate it with values
+ 2) in index.js add to locales constant the name of the new language
+
+To change language for next build:
+ - root
+ 1) in .env file change the value of I18N_LOCALE to one of the values in locales constant (src/javascript/i18n/index.js)
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Time estimate
+```
+ - Project setup: 1h
+ - Navbar and home page: 30 min
+ - Posts page: 2h
+ - View Post page: 2h
+ - Author shenanigans: 30min
+
+```

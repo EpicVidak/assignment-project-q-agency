@@ -1,28 +1,50 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <navbar @searchData='handleSearchData'/>
+    <transition name="page">
+      <router-view class="page" :searchData="searchData"></router-view>
+    </transition>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-
+import navbar from '@/components/navbar.vue';
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    navbar
+  },
+  data() {
+    return {
+      searchData: '',
+    };
+  },
+  methods: {
+    handleSearchData(data) {
+      this.searchData = data;
+    },
   }
 }
 </script>
-
-<style>
+<style lang="scss">
+body * {
+  box-sizing: border-box;
+}
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  margin-top: 60px;
+  height: 100vh;
+  width: 100%;
+}
+.page {
+  height: calc(100vh - #{$nav-height});
 }
 </style>
