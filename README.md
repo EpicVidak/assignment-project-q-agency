@@ -29,7 +29,7 @@ To change language for next build:
 
 ### Jest tests
 ```
-To run jest test suit type:
+To run jest test suite type:
 pnpm jest
 ```
 
