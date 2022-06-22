@@ -36,7 +36,7 @@ export default {
   computed: {
     postId () {
       let id = this.$router.currentRoute?.params?.id 
-      console.log('Post ID: ', id);
+      // console.log('Post ID: ', id);
       return id 
     }
   },
@@ -52,21 +52,21 @@ export default {
     async fetchPost () {
       let [res, err] = await this.callApi(api.getPost, [this.postId])
       if (err) return;
-      console.log("Post: ", res.data);
+      // console.log("Post: ", res.data);
       this.post = res.data
       return res.data.userId
     },
     async fetchAuthor (uId) {
       let [res, err] = await this.callApi(api.getUser, [uId])
       if (err) return;
-      console.log("Author: ", res.data);
+      // console.log("Author: ", res.data);
       this.author = res.data
       return res.data
     },
     async fetchComments () {
       let [res, err] = await this.callApi(api.getComments, [this.postId])
       if (err) return;
-      console.log("Comments: ", res.data);
+      // console.log("Comments: ", res.data);
       this.comments = res.data
       return res.data
     }

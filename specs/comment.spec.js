@@ -7,7 +7,7 @@ import i18n from '../src/javascript/i18n';
 const testComment = {
   email: 'Test@test.com',
   name: 'Test',
-  body: "lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget nunc euismod, consectetur nisl eu, consectetur nisl"
+  body: "lorem ipsum dolor sit amet"
 }
 
 initFilters(Vue)
@@ -32,6 +32,6 @@ test('check comment', () => {
   expect(wrap.find('.posted-by').text()).toBe('Objavio:  Test@test.com')
   
   expect(wrap.find('.comment-title').text()).toBe('Test')
-
-  expect(wrap.find('.comment-body').text()).toBe('Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec eget nunc euismod, consectetur nisl eu, consectetur nisl.')
+  // doubles as filter validation
+  expect(wrap.find('.comment-body').text()).toBe('Lorem ipsum dolor sit amet.')
 })
