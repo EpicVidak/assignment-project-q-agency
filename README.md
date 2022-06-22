@@ -42,5 +42,5 @@ pnpm jest
  - Author shenanigans: 30 min
  - Refator: ~30 min
  - Setting up jest: 1h
- - Writing tests: 30min
+ - Writing tests: 2h 30min
 ```
